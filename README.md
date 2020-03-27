@@ -2,12 +2,22 @@
 
 > A jitsi meet component wrapper moulded with react&#x27;s chakra 💠
 
-[![NPM](https://img.shields.io/npm/v/jutsu.svg)](https://www.npmjs.com/package/jutsu)
+[View live demo](https://this-fifo.github.io/jutsu/)
+
+[![NPM](https://img.shields.io/npm/v/react-jutsu.svg)](https://www.npmjs.com/package/react-jutsu)
 
 ## Install
 
 ```bash
 yarn add react-jutsu
+```
+
+## Add the Jitsi Meet API js file to the html body
+
+```html
+<body>
+  <script src='https://meet.jit.si/external_api.js'></script>
+</body>
 ```
 
 ## Sample Usage
