@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/jutsu/static/css/main.decb6672.chunk.css",
+    "main.js": "/jutsu/static/js/main.0eb54c01.chunk.js",
+    "main.js.map": "/jutsu/static/js/main.0eb54c01.chunk.js.map",
+    "runtime-main.js": "/jutsu/static/js/runtime-main.d956e946.js",
+    "runtime-main.js.map": "/jutsu/static/js/runtime-main.d956e946.js.map",
+    "static/js/2.16dedb4a.chunk.js": "/jutsu/static/js/2.16dedb4a.chunk.js",
+    "static/js/2.16dedb4a.chunk.js.map": "/jutsu/static/js/2.16dedb4a.chunk.js.map",
+    "index.html": "/jutsu/index.html",
+    "precache-manifest.1605d776188425da2a5b321f38622877.js": "/jutsu/precache-manifest.1605d776188425da2a5b321f38622877.js",
+    "service-worker.js": "/jutsu/service-worker.js",
+    "static/css/main.decb6672.chunk.css.map": "/jutsu/static/css/main.decb6672.chunk.css.map",
+    "static/js/2.16dedb4a.chunk.js.LICENSE.txt": "/jutsu/static/js/2.16dedb4a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d956e946.js",
+    "static/js/2.16dedb4a.chunk.js",
+    "static/css/main.decb6672.chunk.css",
+    "static/js/main.0eb54c01.chunk.js"
+  ]
+}

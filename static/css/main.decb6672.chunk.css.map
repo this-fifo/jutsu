@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,0CACE,KACE,YAAa,CACb,oBAAqB,CACrB,sBACF,CACF","file":"main.decb6672.chunk.css","sourcesContent":["@media only screen and (min-width: 1025px) {\n  body {\n    display: flex;\n    align-content: center;\n    justify-content: center;\n  }\n}\n"]}
