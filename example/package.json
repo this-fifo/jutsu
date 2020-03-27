@@ -1,0 +1,32 @@
+{
+  "name": "jutsu-example",
+  "homepage": "https://this-fifo.github.io/jutsu",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "link:../node_modules/react",
+    "react-dom": "^16.13.1",
+    "react-scripts": "^3.4.1",
+    "jutsu": "link:.."
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
