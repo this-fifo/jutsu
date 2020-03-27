@@ -9,7 +9,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
-    "jutsu": "link:.."
+    "react-jutsu": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",

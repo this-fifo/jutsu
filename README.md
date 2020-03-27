@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-yarn add jutsu
+yarn add react-jutsu
 ```
 
 ## Sample Usage
@@ -15,7 +15,7 @@ yarn add jutsu
 ```jsx
 import React, { useState } from 'react'
 
-import Jutsu from 'jutsu'
+import Jutsu from 'react-jutsu'
 
 const App = () => {
   const [room, setRoom] = useState('')

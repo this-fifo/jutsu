@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Jutsu from 'jutsu'
+import Jutsu from 'react-jutsu'
 
 const App = () => {
   const [room, setRoom] = useState('')
