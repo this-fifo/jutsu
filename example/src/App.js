@@ -15,7 +15,7 @@ const App = () => {
   return (
     <div>
       <h2>&lt;Jutsu /&gt; Demo !</h2>
-      <blockquote>Please check <a href="https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md">jitsi-meet</a> for the full configuration</blockquote>
+      <blockquote>View the <a href='https://github.com/this-fifo/jutsu'>source</a> for Jutsu and check <a href='https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md'>jitsi-meet</a> for the Jitsi Meet API</blockquote>
       {call ? (<Jutsu
         roomName={room}
         userName={name}
@@ -29,7 +29,8 @@ const App = () => {
             </button>
           </form>
         )}
-      <p>Made with <span role='img' aria-label='coffee'>☕</span> by <a href="https://github.com/this-fifo">Filipe Herculano</a></p>
+      <p>Made with <span role='img' aria-label='coffee'>☕</span> by <a href='https://github.com/this-fifo'>Filipe Herculano</a></p>
+      <small><i>Note: works only on a desktop browser for now, checkout <a href='https://github.com/jitsi/jitsi-meet/pull/3518'>this PR</a> for more information</i></small>
     </div>
   )
 }
