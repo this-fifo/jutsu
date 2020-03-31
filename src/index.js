@@ -5,6 +5,7 @@ const Jutsu = ({
   roomName,
   userName,
   domain = 'meet.jit.si',
+  password,
   loadingComponent,
   containerStyles,
   jitsiContainerStyles
@@ -31,6 +32,9 @@ const Jutsu = ({
         console.info(`${userName} has entered ${roomName}`)
         setLoading(false)
         api.executeCommand('displayName', userName)
+        if (password) {
+          api.executeCommand('password', password)
+        }
       })
     } catch (error) {
       console.error('Failed to load Jitsi API', error)
@@ -60,6 +64,7 @@ Jutsu.propTypes = {
   roomName: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,
   domain: PropTypes.string,
+  password: PropTypes.string,
   loadingComponent: PropTypes.object,
   containerStyles: PropTypes.object,
   jitsiContainerStyles: PropTypes.object

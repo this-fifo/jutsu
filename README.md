@@ -31,6 +31,7 @@ const App = () => {
   const [room, setRoom] = useState('')
   const [name, setName] = useState('')
   const [call, setCall] = useState(false)
+  const [password, setPassword] = useState('')
 
   const handleClick = event => {
     event.preventDefault()
@@ -41,11 +42,13 @@ const App = () => {
     <Jutsu
       roomName={room}
       userName={name}
+      password={password}
       loadingComponent={<p>loading ...</p>} />
   ) : (
     <form>
       <input id='room' type='text' placeholder='Room' value={room} onChange={(e) => setRoom(e.target.value)} />
       <input id='name' type='text' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
+      <input id='password' type='text' placeholder='Password (optional)' value={password} onChange={(e) => setPassword(e.target.value)} />
       <button onClick={handleClick} type='submit'>
         Start / Join
       </button>
@@ -56,7 +59,7 @@ const App = () => {
 export default App
 ```
 
-## Support Configuration
+## Supported Configuration
 > Check the [Jitsi Meet API docs](https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md#api--new-jitsimeetexternalapidomain-options) for more
 
 ### Room Name
@@ -66,6 +69,14 @@ The meeting room name
 ### User Name
 The participant's name
 >This prop is required for jitsi to load
+
+### Password
+The meeting room password
+>This prop is optional
+
+```jsx
+<Jutsu roomName='sao' userName='kirito' password='asuna'>
+```
 
 ### Domain
 ```jsx
