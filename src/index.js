@@ -6,6 +6,7 @@ const Jutsu = ({
   userName,
   domain = 'meet.jit.si',
   password,
+  subject,
   loadingComponent,
   containerStyles,
   jitsiContainerStyles
@@ -28,6 +29,9 @@ const Jutsu = ({
     try {
       // eslint-disable-next-line no-undef
       const api = new JitsiMeetExternalAPI(domain, { roomName, parentNode: ref.current })
+      if (subject) {
+        api.executeCommand('subject', subject)
+      }
       api.addEventListener('videoConferenceJoined', () => {
         console.info(`${userName} has entered ${roomName}`)
         setLoading(false)
@@ -47,14 +51,12 @@ const Jutsu = ({
   }, [])
 
   return (
-    <div
-      style={{...containerStyle, ...containerStyles}}
-    >
+    <div style={{ ...containerStyle, ...containerStyles }}>
       {loading && (loadingComponent || <p>Loading ...</p>)}
       <div
-        id='jitsi-container'
+        id="jitsi-container"
         ref={ref}
-        style={{...jitsiContainerStyle, ...jitsiContainerStyles}}
+        style={{ ...jitsiContainerStyle, ...jitsiContainerStyles }}
       />
     </div>
   )
@@ -65,6 +67,7 @@ Jutsu.propTypes = {
   userName: PropTypes.string.isRequired,
   domain: PropTypes.string,
   password: PropTypes.string,
+  subject: PropTypes.string,
   loadingComponent: PropTypes.object,
   containerStyles: PropTypes.object,
   jitsiContainerStyles: PropTypes.object
