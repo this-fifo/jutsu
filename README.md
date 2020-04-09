@@ -74,8 +74,17 @@ The participant's name
 The meeting room password
 >This prop is optional
 
+### Subject
+The meeting subject (what is displayed at the top)
+>This prop is optional
+
 ```jsx
-<Jutsu roomName='sao' userName='kirito' password='asuna'>
+<Jutsu 
+  roomName='naruto'
+  userName='uzumaki'
+  password='dattebayo'
+  subject='fan'
+/>
 ```
 
 ### Domain
