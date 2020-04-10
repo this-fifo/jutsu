@@ -1,18 +1,14 @@
-import React, { createRef, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const Jutsu = ({
-  roomName,
-  userName,
-  domain = 'meet.jit.si',
-  password,
-  subject,
-  loadingComponent,
-  containerStyles,
-  jitsiContainerStyles
-}) => {
+import useJitsi from './useJitsi'
+
+const Jutsu = (props) => {
+  const { roomName, displayName, password, subject } = props
+  const { loadingComponent, containerStyles, jitsiContainerStyles } = props
+
   const [loading, setLoading] = useState(true)
-  const ref = createRef()
+  const jitsi = useJitsi({ roomName, parentNodeId: 'jitsi-container' })
 
   const containerStyle = {
     width: '800px',
@@ -25,37 +21,23 @@ const Jutsu = ({
     height: '100%'
   }
 
-  const startConference = () => {
-    try {
-      // eslint-disable-next-line no-undef
-      const api = new JitsiMeetExternalAPI(domain, { roomName, parentNode: ref.current })
-      if (subject) {
-        api.executeCommand('subject', subject)
-      }
-      api.addEventListener('videoConferenceJoined', () => {
-        console.info(`${userName} has entered ${roomName}`)
-        setLoading(false)
-        api.executeCommand('displayName', userName)
-        if (password) {
-          api.executeCommand('password', password)
-        }
-      })
-    } catch (error) {
-      console.error('Failed to load Jitsi API', error)
-    }
-  }
-
   useEffect(() => {
-    if (window.JitsiMeetExternalAPI) startConference()
-    else console.error('Jitsi Meet API script not loaded')
-  }, [])
+    if (jitsi) {
+      jitsi.addEventListener('videoConferenceJoined', () => {
+        jitsi.executeCommand('displayName', displayName)
+        jitsi.executeCommand('password', password)
+        jitsi.executeCommand('subject', subject)
+        setLoading(false)
+      })
+    }
+    return () => jitsi && jitsi.dispose()
+  }, [jitsi])
 
   return (
     <div style={{ ...containerStyle, ...containerStyles }}>
       {loading && (loadingComponent || <p>Loading ...</p>)}
       <div
-        id="jitsi-container"
-        ref={ref}
+        id='jitsi-container'
         style={{ ...jitsiContainerStyle, ...jitsiContainerStyles }}
       />
     </div>
@@ -64,8 +46,7 @@ const Jutsu = ({
 
 Jutsu.propTypes = {
   roomName: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  domain: PropTypes.string,
+  displayName: PropTypes.string,
   password: PropTypes.string,
   subject: PropTypes.string,
   loadingComponent: PropTypes.object,
@@ -73,4 +54,4 @@ Jutsu.propTypes = {
   jitsiContainerStyles: PropTypes.object
 }
 
-export default Jutsu
+export { Jutsu, useJitsi }

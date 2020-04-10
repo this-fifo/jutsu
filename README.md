@@ -20,8 +20,40 @@ yarn add react-jutsu
 </body>
 ```
 
-## Sample Usage
+## Two options
+> You can use the provided component for simple scenarios or the hook for access to the jitsi meet api
+```js
+import { Jutsu } from 'react-jutsu' // Component
+import { useJitsi } from 'react-jutsu' // Custom hook
+```
 
+## Sample Usage (Hook)
+```jsx
+import React, { useEffect } from 'react'
+import { useJitsi } from 'react-jutsu'
+
+const App = () => {
+  const domain = 'meet.jit.si'
+  const roomName = 'konoha'
+  const parentNodeId = 'jitsi-container'
+  const jitsi = useJitsi({ domain, roomName, parentNodeId })
+
+  useEffect(() => {
+    if (jitsi) {
+      jitsi.addEventListener('videoConferenceJoined', () => {
+        jitsi.executeCommand('displayName', 'Naruto Uzumaki')
+        jitsi.executeCommand('password', 'dattebayo')
+        jitsi.executeCommand('subject', 'fan')
+      })
+    }
+    return () => jitsi && jitsi.dispose()
+  }, [jitsi])
+
+  return <div id={parentNodeId} />
+}
+```
+
+## Sample Usage (Component)
 ```jsx
 import React, { useState } from 'react'
 
@@ -64,11 +96,11 @@ export default App
 
 ### Room Name
 The meeting room name
->This prop is required for jitsi to load
+>This prop is required to start a meeting
 
-### User Name
-The participant's name
->This prop is required for jitsi to load
+### Display Name
+The participant's displayed name
+>This prop is optional
 
 ### Password
 The meeting room password
@@ -81,8 +113,8 @@ The meeting subject (what is displayed at the top)
 ```jsx
 <Jutsu 
   roomName='naruto'
-  userName='uzumaki'
   password='dattebayo'
+  displayName='uzumaki'
   subject='fan'
 />
 ```

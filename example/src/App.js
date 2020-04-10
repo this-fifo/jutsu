@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import Jutsu from 'react-jutsu'
+import { Jutsu } from 'react-jutsu'
 
 const App = () => {
   const [room, setRoom] = useState('')
@@ -19,8 +19,8 @@ const App = () => {
       <blockquote>View the <a href='https://github.com/this-fifo/jutsu'>source</a> for Jutsu and check <a href='https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md'>jitsi-meet</a> for the Jitsi Meet API</blockquote>
       {call ? (<Jutsu
         roomName={room}
-        userName={name}
         password={password}
+        displayName={name}
         loadingComponent={<p>ʕ •ᴥ•ʔ jitsi is loading ...</p>} />)
         : (
           <form>
