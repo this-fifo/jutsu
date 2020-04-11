@@ -1,6 +1,5 @@
 # &lt;Jutsu /&gt;
-
-> A jitsi meet component wrapper moulded with react&#x27;s chakra 💠
+> A jitsi meet component wrapper and custom hook moulded with react's chakra 💠
 
 [View live demo](https://this-fifo.github.io/jutsu/)
 
@@ -57,7 +56,7 @@ const App = () => {
 ```jsx
 import React, { useState } from 'react'
 
-import Jutsu from 'react-jutsu'
+import { Jutsu } from 'react-jutsu'
 
 const App = () => {
   const [room, setRoom] = useState('')
