@@ -32,10 +32,9 @@ import React, { useEffect } from 'react'
 import { useJitsi } from 'react-jutsu'
 
 const App = () => {
-  const domain = 'meet.jit.si'
   const roomName = 'konoha'
-  const parentNodeId = 'jitsi-container'
-  const jitsi = useJitsi({ domain, roomName, parentNodeId })
+  const parentNode = 'jitsi-container'
+  const jitsi = useJitsi({ roomName, parentNode })
 
   useEffect(() => {
     if (jitsi) {
@@ -48,7 +47,7 @@ const App = () => {
     return () => jitsi && jitsi.dispose()
   }, [jitsi])
 
-  return <div id={parentNodeId} />
+  return <div id={parentNode} />
 }
 ```
 
@@ -91,7 +90,7 @@ export default App
 ```
 
 ## Supported Configuration
-> Check the [Jitsi Meet API docs](https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md#api--new-jitsimeetexternalapidomain-options) for more
+> Check the [Jitsi Meet API docs](https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md#api--new-jitsimeetexternalapidomain-options) for full configuration and how to use api commands when using the `useJitsi` hook
 
 ### Room Name
 The meeting room name

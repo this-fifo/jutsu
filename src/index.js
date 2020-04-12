@@ -8,7 +8,7 @@ const Jutsu = (props) => {
   const { loadingComponent, containerStyles, jitsiContainerStyles } = props
 
   const [loading, setLoading] = useState(true)
-  const jitsi = useJitsi({ roomName, parentNodeId: 'jitsi-container' })
+  const jitsi = useJitsi({ roomName, parentNode: 'jitsi-container' })
 
   const containerStyle = {
     width: '800px',

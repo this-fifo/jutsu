@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const useJitsi = ({ domain = 'meet.jit.si', roomName, parentNodeId }) => {
+const useJitsi = (options, domain = 'meet.jit.si') => {
   const [jitsi, setJitsi] = useState(null)
 
   useEffect(() => {
     if (window.JitsiMeetExternalAPI) {
-      const parentNode = parentNodeId
-        ? document.getElementById(parentNodeId)
-        : document.body
+      options.parentNode = document.getElementById(options.parentNode)
       // eslint-disable-next-line no-undef
-      setJitsi(new JitsiMeetExternalAPI(domain, { roomName, parentNode }))
+      setJitsi(new JitsiMeetExternalAPI(domain, options))
     } else {
       setJitsi({ error: 'JitsiMeetExternalAPI is not available, check if https://meet.jit.si/external_api.js was loaded' })
     }
@@ -21,9 +19,21 @@ const useJitsi = ({ domain = 'meet.jit.si', roomName, parentNodeId }) => {
 }
 
 useJitsi.propTypes = {
-  domain: PropTypes.string,
-  roomName: PropTypes.string.isRequired,
-  parentNodeId: PropTypes.string.isRequired
+  options: PropTypes.shape({
+    roomName: PropTypes.string.isRequired,
+    width: PropTypes.string,
+    height: PropTypes.string,
+    parentNode: PropTypes.string,
+    configOverwrite: PropTypes.string,
+    interfaceConfigOverwrite: PropTypes.object,
+    noSSL: PropTypes.bool,
+    jwt: PropTypes.string,
+    onload: PropTypes.func,
+    invitees: PropTypes.array,
+    devices: PropTypes.object,
+    userInfo: PropTypes.object
+  }),
+  domain: PropTypes.string
 }
 
 export default useJitsi
