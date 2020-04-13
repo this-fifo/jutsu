@@ -24,11 +24,11 @@ const Jutsu = (props) => {
   useEffect(() => {
     if (jitsi) {
       jitsi.addEventListener('videoConferenceJoined', () => {
+        if (password) jitsi.executeCommand('password', password)
         jitsi.executeCommand('displayName', displayName)
-        jitsi.executeCommand('password', password)
         jitsi.executeCommand('subject', subject)
-        setLoading(false)
       })
+      setLoading(false)
     }
     return () => jitsi && jitsi.dispose()
   }, [jitsi])
