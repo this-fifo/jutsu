@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import useJitsi from './useJitsi'
 
 const Jutsu = (props) => {
-  const { roomName, displayName, password, subject } = props
+  const { domain, roomName, displayName, password, subject } = props
   const { loadingComponent, containerStyles, jitsiContainerStyles } = props
 
   const [loading, setLoading] = useState(true)
-  const jitsi = useJitsi({ roomName, parentNode: 'jitsi-container' })
+  const jitsi = useJitsi({ roomName, parentNode: 'jitsi-container' }, domain)
 
   const containerStyle = {
     width: '800px',
@@ -45,6 +45,7 @@ const Jutsu = (props) => {
 }
 
 Jutsu.propTypes = {
+  domain: PropTypes.string,
   roomName: PropTypes.string.isRequired,
   displayName: PropTypes.string,
   password: PropTypes.string,
