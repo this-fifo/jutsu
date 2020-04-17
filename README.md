@@ -71,7 +71,7 @@ const App = () => {
   return call ? (
     <Jutsu
       roomName={room}
-      userName={name}
+      displayName={name}
       password={password}
       loadingComponent={<p>loading ...</p>} />
   ) : (
