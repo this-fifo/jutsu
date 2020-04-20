@@ -26,9 +26,9 @@ const Jutsu = (props) => {
       jitsi.executeCommand('subject', subject)
       jitsi.addEventListener('videoConferenceJoined', () => {
         if (password) jitsi.executeCommand('password', password)
+        setLoading(false)
         jitsi.executeCommand('displayName', displayName)
       })
-      setLoading(false)
     }
     return () => jitsi && jitsi.dispose()
   }, [jitsi])
