@@ -1,6 +1,6 @@
 {
   "name": "react-jutsu",
-  "version": "2.1.4",
+  "version": "2.1.5",
   "description": "A jitsi meet component & hook moulded with react's chakra",
   "author": "Filipe Herculano",
   "license": "MIT",
@@ -35,6 +35,16 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.+(js|jsx)": [
+      "eslint --fix"
+    ]
+  },
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
@@ -58,6 +68,8 @@
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
     "gh-pages": "^1.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
