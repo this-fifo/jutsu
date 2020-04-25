@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1966dc7e1e45c79bfe9585c275be85da",
+    "revision": "478a119d078944a834bd246816fc4503",
     "url": "/jutsu/index.html"
   },
   {
-    "revision": "e479515442f00a5eb7a9",
+    "revision": "fa8ec213ae96b5a1ac53",
     "url": "/jutsu/static/css/main.decb6672.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/jutsu/static/js/2.16dedb4a.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e479515442f00a5eb7a9",
-    "url": "/jutsu/static/js/main.6baf593b.chunk.js"
+    "revision": "fa8ec213ae96b5a1ac53",
+    "url": "/jutsu/static/js/main.1a0cedcd.chunk.js"
   },
   {
     "revision": "de7a2624e6cec1be6f62",

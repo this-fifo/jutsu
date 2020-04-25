@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/jutsu/static/css/main.decb6672.chunk.css",
-    "main.js": "/jutsu/static/js/main.6baf593b.chunk.js",
-    "main.js.map": "/jutsu/static/js/main.6baf593b.chunk.js.map",
+    "main.js": "/jutsu/static/js/main.1a0cedcd.chunk.js",
+    "main.js.map": "/jutsu/static/js/main.1a0cedcd.chunk.js.map",
     "runtime-main.js": "/jutsu/static/js/runtime-main.d956e946.js",
     "runtime-main.js.map": "/jutsu/static/js/runtime-main.d956e946.js.map",
     "static/js/2.16dedb4a.chunk.js": "/jutsu/static/js/2.16dedb4a.chunk.js",
     "static/js/2.16dedb4a.chunk.js.map": "/jutsu/static/js/2.16dedb4a.chunk.js.map",
     "index.html": "/jutsu/index.html",
-    "precache-manifest.3d5986f0ecfb020fbf496db5dab8932e.js": "/jutsu/precache-manifest.3d5986f0ecfb020fbf496db5dab8932e.js",
+    "precache-manifest.55fb6fec8a839822da7b4b91104371b3.js": "/jutsu/precache-manifest.55fb6fec8a839822da7b4b91104371b3.js",
     "service-worker.js": "/jutsu/service-worker.js",
     "static/css/main.decb6672.chunk.css.map": "/jutsu/static/css/main.decb6672.chunk.css.map",
     "static/js/2.16dedb4a.chunk.js.LICENSE.txt": "/jutsu/static/js/2.16dedb4a.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.d956e946.js",
     "static/js/2.16dedb4a.chunk.js",
     "static/css/main.decb6672.chunk.css",
-    "static/js/main.6baf593b.chunk.js"
+    "static/js/main.1a0cedcd.chunk.js"
   ]
 }
