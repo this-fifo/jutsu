@@ -30,13 +30,17 @@ const Jutsu = (props) => {
         setLoading(false)
         jitsi.executeCommand('displayName', displayName)
       })
-      jitsi.addEventListener('readyToClose', () => onMeetingEnd())
+
+
+
       jitsi.addEventListener('passwordRequired', () => {
         if (password) {
           jitsi.executeCommand('password', password)
         }
         setLoading(false)
       })
+
+      jitsi.addEventListener('readyToClose', () => onMeetingEnd())
     }
 
     return () => jitsi && jitsi.dispose()
