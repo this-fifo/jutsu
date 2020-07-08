@@ -5,7 +5,7 @@ import useJitsi from './useJitsi'
 
 const Jutsu = (props) => {
   const { domain, roomName, displayName, password, jwt = null, subject } = props
-  const { loadingComponent, containerStyles, jitsiContainerStyles } = props
+  const { loadingComponent, containerStyles, jitsiContainerStyles,onMeetingEnd } = props
 
   const [loading, setLoading] = useState(true)
   const jitsi = useJitsi({ roomName, parentNode: 'jitsi-container', jwt: jwt }, domain)
@@ -31,12 +31,16 @@ const Jutsu = (props) => {
         jitsi.executeCommand('displayName', displayName)
       })
 
+
+
       jitsi.addEventListener('passwordRequired', () => {
         if (password) {
           jitsi.executeCommand('password', password)
         }
         setLoading(false)
       })
+
+      jitsi.addEventListener('readyToClose', () => onMeetingEnd())
     }
 
     return () => jitsi && jitsi.dispose()
