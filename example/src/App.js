@@ -21,6 +21,7 @@ const App = () => {
         roomName={room}
         password={password}
         displayName={name}
+        onMeetingEnd={() => console.log('Meeting has ended')}
         loadingComponent={<p>ʕ •ᴥ•ʔ jitsi is loading ...</p>} />)
         : (
           <form>

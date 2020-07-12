@@ -5,7 +5,7 @@ import useJitsi from './useJitsi'
 
 const Jutsu = (props) => {
   const { domain, roomName, displayName, password, jwt = null, subject } = props
-  const { loadingComponent, containerStyles, jitsiContainerStyles,onMeetingEnd } = props
+  const { loadingComponent, containerStyles, jitsiContainerStyles, onMeetingEnd } = props
 
   const [loading, setLoading] = useState(true)
   const jitsi = useJitsi({ roomName, parentNode: 'jitsi-container', jwt: jwt }, domain)
@@ -23,24 +23,20 @@ const Jutsu = (props) => {
 
   useEffect(() => {
     if (jitsi) {
+      setLoading(false)
       jitsi.executeCommand('subject', subject)
 
       jitsi.addEventListener('videoConferenceJoined', () => {
         if (password) jitsi.executeCommand('password', password)
-        setLoading(false)
         jitsi.executeCommand('displayName', displayName)
       })
-
-
 
       jitsi.addEventListener('passwordRequired', () => {
         if (password) {
           jitsi.executeCommand('password', password)
         }
-        setLoading(false)
       })
-
-      jitsi.addEventListener('readyToClose', () => onMeetingEnd())
+      if (onMeetingEnd) jitsi.addEventListener('readyToClose', onMeetingEnd)
     }
 
     return () => jitsi && jitsi.dispose()
@@ -58,12 +54,13 @@ const Jutsu = (props) => {
 }
 
 Jutsu.propTypes = {
+  jwt: PropTypes.string,
   domain: PropTypes.string,
+  subject: PropTypes.string,
+  password: PropTypes.string,
   roomName: PropTypes.string.isRequired,
   displayName: PropTypes.string,
-  password: PropTypes.string,
-  jwt: PropTypes.string,
-  subject: PropTypes.string,
+  onMeetingEnd: PropTypes.func,
   loadingComponent: PropTypes.object,
   containerStyles: PropTypes.object,
   jitsiContainerStyles: PropTypes.object

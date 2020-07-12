@@ -73,6 +73,7 @@ const App = () => {
       roomName={room}
       displayName={name}
       password={password}
+      onMeetingEnd={() => console.log('Meeting has ended')}
       loadingComponent={<p>loading ...</p>} />
   ) : (
     <form>
@@ -104,16 +105,21 @@ The participant's displayed name
 The meeting room password
 >This prop is optional
 
+### onMeetingEnd
+Callback function executed after readyToClose event is fired
+>This prop is optional
+
 ### Subject
 The meeting subject (what is displayed at the top)
 >This prop is optional
 
 ```jsx
 <Jutsu 
+  subject='fan'
   roomName='naruto'
   password='dattebayo'
   displayName='uzumaki'
-  subject='fan'
+  onMeetingEnd={() => console.log('Meeting has ended')}
 />
 ```
 
