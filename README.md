@@ -93,6 +93,10 @@ export default App
 ## Supported Configuration
 > Check the [Jitsi Meet API docs](https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md#api--new-jitsimeetexternalapidomain-options) for full configuration and how to use api commands when using the `useJitsi` hook
 
+### Options
+The `options` passed to `JitsiMeetExternalAPI`.
+>Properties specified in `options` will overwrite the configuration other configurations.
+
 ### Room Name
 The meeting room name
 >This prop is required to start a meeting
