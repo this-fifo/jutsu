@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const useJitsi = (options, domain = 'meet.jit.si') => {
+const useJitsi = (options, domain = 'meet.jit.si', dependencies = []) => {
   const [jitsi, setJitsi] = useState(null)
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const useJitsi = (options, domain = 'meet.jit.si') => {
       setJitsi({ error: 'JitsiMeetExternalAPI is not available, check if https://meet.jit.si/external_api.js was loaded' })
     }
     return () => jitsi && jitsi.dispose()
-  }, [])
+  }, dependencies)
 
   return jitsi
 }
