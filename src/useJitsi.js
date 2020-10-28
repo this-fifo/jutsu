@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const useJitsi = (options, domain = 'meet.jit.si', dependencies = []) => {
+const useJitsi = (options, domain = 'meet.jit.si') => {
   const [jitsi, setJitsi] = useState(null)
 
   useEffect(() => {
@@ -9,11 +9,10 @@ const useJitsi = (options, domain = 'meet.jit.si', dependencies = []) => {
       options.parentNode = document.getElementById(options.parentNode)
       // eslint-disable-next-line no-undef
       setJitsi(new JitsiMeetExternalAPI(domain, options))
-    } else {
-      setJitsi({ error: 'JitsiMeetExternalAPI is not available, check if https://meet.jit.si/external_api.js was loaded' })
+      return () => jitsi.dispose()
     }
-    return () => jitsi && jitsi.dispose()
-  }, dependencies)
+    setJitsi({ error: 'JitsiMeetExternalAPI is not available, check if https://meet.jit.si/external_api.js was loaded' })
+  }, [window.JitsiMeetExternalAPI])
 
   return jitsi
 }
