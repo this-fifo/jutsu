@@ -1,29 +1,66 @@
 import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
-const useJitsi = (options, domain = 'meet.jit.si') => {
+const useJitsi = ({
+  domain = 'meet.jit.si',
+  parentNode,
+  subject,
+  password,
+  displayName,
+  onMeetingEnd,
+  ...options
+}) => {
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [jitsi, setJitsi] = useState(null)
 
   useEffect(() => {
-    if (window.JitsiMeetExternalAPI) {
-      options.parentNode = document.getElementById(options.parentNode)
-      // eslint-disable-next-line no-undef
-      setJitsi(new JitsiMeetExternalAPI(domain, options))
-      return () => jitsi.dispose()
+    if (!window.JitsiMeetExternalAPI) {
+      setError('JitsiMeetExternalAPI is not available, check if https://meet.jit.si/external_api.js was loaded')
+      return
     }
-    setJitsi({ error: 'JitsiMeetExternalAPI is not available, check if https://meet.jit.si/external_api.js was loaded' })
+
+    options.parentNode = document.getElementById(parentNode)
+    if (!options.parentNode) {
+      setError(`Parent node is not available, check container have the correct id: "${parentNode}"`)
+      return
+    }
+
+    const client = new window.JitsiMeetExternalAPI(domain, {...options})
+    setJitsi(client)
+    setLoading(false)
+    setError(null)
+
+    subject && client.executeCommand('subject', subject)
+
+    client.addEventListener('videoConferenceJoined', () => {
+      password && client.executeCommand('password', password)
+      displayName && client.executeCommand('displayName', displayName)
+    })
+
+    client.addEventListener('passwordRequired', () => {
+      password && client.executeCommand('password', password)
+    })
+    onMeetingEnd && client.addEventListener('readyToClose', onMeetingEnd)
+
+    return () => jitsi.dispose()
   }, [window.JitsiMeetExternalAPI])
 
-  return jitsi
+  return {jitsi, error, loading}
 }
 
 useJitsi.propTypes = {
   options: PropTypes.shape({
+    domain: PropTypes.string,
     roomName: PropTypes.string.isRequired,
+    subject: PropTypes.string,
+    password: PropTypes.string,
+    displayName: PropTypes.string,
+    onMeetingEnd: PropTypes.func,
     width: PropTypes.string,
     height: PropTypes.string,
     parentNode: PropTypes.string,
-    configOverwrite: PropTypes.string,
+    configOverwrite: PropTypes.object,
     interfaceConfigOverwrite: PropTypes.object,
     noSSL: PropTypes.bool,
     jwt: PropTypes.string,
@@ -31,8 +68,7 @@ useJitsi.propTypes = {
     invitees: PropTypes.array,
     devices: PropTypes.object,
     userInfo: PropTypes.object
-  }),
-  domain: PropTypes.string
+  })
 }
 
 export default useJitsi

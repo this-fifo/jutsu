@@ -1,60 +1,48 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import useJitsi from './useJitsi'
 
-const Jutsu = (props) => {
-  const { domain, roomName, displayName, password, jwt = null, subject, options = {} } = props
-  const { loadingComponent, containerStyles, jitsiContainerStyles, onMeetingEnd } = props
-
-  const [loading, setLoading] = useState(true)
-  const jitsi = useJitsi({ roomName, parentNode: 'jitsi-container', jwt: jwt, ...options }, domain)
-
-  const containerStyle = {
-    width: '800px',
-    height: '400px'
-  }
-
-  const jitsiContainerStyle = {
-    display: loading ? 'none' : 'block',
-    width: '100%',
-    height: '100%'
-  }
+const Jutsu = ({
+  loadingComponent,
+  errorComponent,
+  containerStyles,
+  jitsiContainerStyles,
+  onError,
+  onJitsi,
+  ...options
+}) => {
+  const {loading, error, jitsi} = useJitsi({
+    parentNode: 'jitsi-container',
+    ...options
+  })
 
   useEffect(() => {
-    if (jitsi) {
-      setLoading(false)
-      jitsi.executeCommand('subject', subject)
-
-      jitsi.addEventListener('videoConferenceJoined', () => {
-        if (password) jitsi.executeCommand('password', password)
-        jitsi.executeCommand('displayName', displayName)
-      })
-
-      jitsi.addEventListener('passwordRequired', () => {
-        if (password) {
-          jitsi.executeCommand('password', password)
-        }
-      })
-      if (onMeetingEnd) jitsi.addEventListener('readyToClose', onMeetingEnd)
-    }
-
-    return () => jitsi && jitsi.dispose()
+    if (jitsi && onJitsi) onJitsi(jitsi)
   }, [jitsi])
 
+  useEffect(() => {
+    if (error && onError) onError(error)
+  }, [error])
+
   return (
-    <div style={{ ...containerStyle, ...containerStyles }}>
-      {loading && (loadingComponent || <p>Loading ...</p>)}
+    <div style={{ ...{ width: '800px', height: '400px' }, ...containerStyles }}>
+      {error && (errorComponent || <p>{error}</p>)}
+      {!error && loading && (loadingComponent || <p>Loading ...</p>)}
       <div
         id='jitsi-container'
-        style={{ ...jitsiContainerStyle, ...jitsiContainerStyles }}
+        style={{ ...{
+          display: loading ? 'none' : 'block',
+          width: '100%',
+          height: '100%'
+        },
+        ...jitsiContainerStyles }}
       />
     </div>
   )
 }
 
 Jutsu.propTypes = {
-  options: PropTypes.object,
   jwt: PropTypes.string,
   domain: PropTypes.string,
   subject: PropTypes.string,
@@ -63,8 +51,13 @@ Jutsu.propTypes = {
   displayName: PropTypes.string,
   onMeetingEnd: PropTypes.func,
   loadingComponent: PropTypes.object,
+  errorComponent: PropTypes.object,
   containerStyles: PropTypes.object,
-  jitsiContainerStyles: PropTypes.object
+  jitsiContainerStyles: PropTypes.object,
+  configOverwrite: PropTypes.object,
+  interfaceConfigOverwrite: PropTypes.object,
+  onError: PropTypes.func,
+  onJitsi: PropTypes.func
 }
 
 export { Jutsu, useJitsi }
