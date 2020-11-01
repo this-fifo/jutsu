@@ -19,6 +19,8 @@ yarn add react-jutsu
 </body>
 ```
 
+> You can choose to load the script another way, the hook will return an error until the jitsi API is available in `window` scope.
+
 ## Two options
 > You can use the provided component for simple scenarios or the hook for access to the jitsi meet api
 ```js
@@ -32,22 +34,21 @@ import React, { useEffect } from 'react'
 import { useJitsi } from 'react-jutsu'
 
 const App = () => {
-  const roomName = 'konoha'
-  const parentNode = 'jitsi-container'
-  const jitsi = useJitsi({ roomName, parentNode })
+  const jitsiConfig = {
+    roomName: 'konoha',
+    displayName: 'Naruto Uzumaki',
+    password: 'dattebayo',
+    subject: 'fan',
+    parentNode = 'jitsi-container',
+  };
+  const { loading, error, jitsi } = useJitsi(jitsiConfig);
 
-  useEffect(() => {
-    if (jitsi) {
-      jitsi.addEventListener('videoConferenceJoined', () => {
-        jitsi.executeCommand('displayName', 'Naruto Uzumaki')
-        jitsi.executeCommand('password', 'dattebayo')
-        jitsi.executeCommand('subject', 'fan')
-      })
-    }
-    return () => jitsi && jitsi.dispose()
-  }, [jitsi])
-
-  return <div id={parentNode} />
+  return (
+    <div>
+      {error && <p>{error}</p>}
+      <div id={jitsiConfig.parentNode} />
+    </div>
+  );
 }
 ```
 
@@ -74,7 +75,8 @@ const App = () => {
       displayName={name}
       password={password}
       onMeetingEnd={() => console.log('Meeting has ended')}
-      loadingComponent={<p>loading ...</p>} />
+      loadingComponent={<p>loading ...</p>}
+      errorComponent={<p>Oops, something went wrong</p>} />
   ) : (
     <form>
       <input id='room' type='text' placeholder='Room' value={room} onChange={(e) => setRoom(e.target.value)} />
@@ -92,10 +94,6 @@ export default App
 
 ## Supported Configuration
 > Check the [Jitsi Meet API docs](https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md#api--new-jitsimeetexternalapidomain-options) for full configuration and how to use api commands when using the `useJitsi` hook
-
-### Options
-The `options` passed to `JitsiMeetExternalAPI`.
->Properties specified in `options` will overwrite the configuration other configurations.
 
 ### Room Name
 The meeting room name
@@ -118,7 +116,7 @@ The meeting subject (what is displayed at the top)
 >This prop is optional
 
 ```jsx
-<Jutsu 
+<Jutsu
   subject='fan'
   roomName='naruto'
   password='dattebayo'
@@ -139,37 +137,60 @@ Your Jitsi domain to use, the default value is `meet.jit.si`
 ```
 An optional loading component, the default value is `<p>Loading ...</p>`
 
-### Styles
+### Error Component
 ```jsx
-<div
-  style={{...containerStyle, ...containerStyles}}
->
-  <div
-    style={{...jitsiContainerStyle, ...jitsiContainerStyles}}
-  />
-</div>
+<Jutsu errorComponent={<p>Oops, something went wrong...</p>}>
 ```
+An optional error component, the default value is a `<p>` containing the error.
+
+### Styles
 Internally Jutsu is constructed inside 2 containers, you can add custom styles for each by specifying `containerStyles` and `jitsiContainerstyles`
 
-The default values are
+The default values set as
 
-```js
-const containerStyle = {
-  width: '800px',
-  height: '400px'
-}
-
-const jitsiContainerStyle = {
-  display: loading ? 'none' : 'block', // <- used for loadingComponent logic
-  width: '100%',
-  height: '100%'
-}
+```jsx
+<div
+  style={{...{
+    width: '800px',
+    height: '400px'
+  }, ...containerStyles}}
+>
+  <div
+    style={{...{
+      display: loading ? 'none' : 'block', // <- used for loadingComponent logic
+      width: '100%',
+      height: '100%'
+    }, ...jitsiContainerStyles}}
+  />
+</div>
 ```
 
 An example override could be
 ```jsx
 <Jutsu containerStyles={{ width: '1200px', height: '800px' }}>
 ```
+
+### configOverwrite
+Configuration object to overwite.
+>This prop is optional
+>More details about possible key/values [here](https://github.com/jitsi/jitsi-meet/blob/master/config.js)
+
+### interfaceConfigOverwrite
+Interface configuration object to overwite.
+>This prop is optional
+>More details about possible key/values [here](https://github.com/jitsi/jitsi-meet/blob/master/interface_config.js)
+
+### onError
+Callback function to be called with an error as the only parameter if any.
+>This prop is optional
+
+### onJitsi
+Callback function to be called with the jitsi API client when instanciated.
+>This prop is optional
+
+### any other prop
+Any other prop passed to the component will be passed to jitsi API constructor as part of the `options` parameter.
+> For instance: `jwt`, `devices`, `userInfo`
 
 ## License
 
