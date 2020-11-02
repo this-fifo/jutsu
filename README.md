@@ -39,7 +39,7 @@ const App = () => {
     displayName: 'Naruto Uzumaki',
     password: 'dattebayo',
     subject: 'fan',
-    parentNode = 'jitsi-container',
+    parentNode: 'jitsi-container',
   };
   const { loading, error, jitsi } = useJitsi(jitsiConfig);
 
@@ -171,12 +171,12 @@ An example override could be
 ```
 
 ### configOverwrite
-Configuration object to overwite.
+Configuration object to overwrite.
 >This prop is optional
 >More details about possible key/values [here](https://github.com/jitsi/jitsi-meet/blob/master/config.js)
 
 ### interfaceConfigOverwrite
-Interface configuration object to overwite.
+Interface configuration object to overwrite.
 >This prop is optional
 >More details about possible key/values [here](https://github.com/jitsi/jitsi-meet/blob/master/interface_config.js)
 
