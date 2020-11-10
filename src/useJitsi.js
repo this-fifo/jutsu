@@ -43,7 +43,7 @@ const useJitsi = ({
     })
     onMeetingEnd && client.addEventListener('readyToClose', onMeetingEnd)
 
-    return () => jitsi.dispose()
+    return () => jitsi && jitsi.dispose()
   }, [window.JitsiMeetExternalAPI])
 
   return {jitsi, error, loading}
