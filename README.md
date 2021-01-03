@@ -93,7 +93,7 @@ export default App
 ```
 
 ## Supported Configuration
-> Check the [Jitsi Meet API docs](https://github.com/jitsi/jitsi-meet/blob/master/doc/api.md#api--new-jitsimeetexternalapidomain-options) for full configuration and how to use api commands when using the `useJitsi` hook
+> Check the [Jitsi Meet API docs](https://jitsi.github.io/handbook/docs/dev-guide/dev-guide-iframe) for full configuration and how to use api commands when using the `useJitsi` hook
 
 ### Room Name
 The meeting room name
