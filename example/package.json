@@ -7,7 +7,7 @@
   "dependencies": {
     "prop-types": "^15.7.2",
     "react": "link:../node_modules/react",
-    "react-dom": "^16.13.1",
+    "react-dom": "^17.0.0",
     "react-scripts": "^3.4.3",
     "react-jutsu": "link:.."
   },

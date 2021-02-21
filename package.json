@@ -1,6 +1,6 @@
 {
   "name": "react-jutsu",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A jitsi meet component & hook moulded with react's chakra",
   "author": "Filipe Herculano",
   "license": "MIT",
@@ -47,8 +47,8 @@
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",

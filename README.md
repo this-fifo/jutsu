@@ -185,7 +185,7 @@ Callback function to be called with an error as the only parameter if any.
 >This prop is optional
 
 ### onJitsi
-Callback function to be called with the jitsi API client when instanciated.
+Callback function to be called with the jitsi API client when instantiated.
 >This prop is optional
 
 ### any other prop
