@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/jutsu/static/css/main.decb6672.chunk.css",
-    "main.js": "/jutsu/static/js/main.4ca5cfc6.chunk.js",
-    "main.js.map": "/jutsu/static/js/main.4ca5cfc6.chunk.js.map",
+    "main.js": "/jutsu/static/js/main.61e8bbac.chunk.js",
+    "main.js.map": "/jutsu/static/js/main.61e8bbac.chunk.js.map",
     "runtime-main.js": "/jutsu/static/js/runtime-main.ced19050.js",
     "runtime-main.js.map": "/jutsu/static/js/runtime-main.ced19050.js.map",
-    "static/js/2.2273da5b.chunk.js": "/jutsu/static/js/2.2273da5b.chunk.js",
-    "static/js/2.2273da5b.chunk.js.map": "/jutsu/static/js/2.2273da5b.chunk.js.map",
+    "static/js/2.37d9c473.chunk.js": "/jutsu/static/js/2.37d9c473.chunk.js",
+    "static/js/2.37d9c473.chunk.js.map": "/jutsu/static/js/2.37d9c473.chunk.js.map",
     "index.html": "/jutsu/index.html",
-    "precache-manifest.b534d626fad19ad7e607b214873b474d.js": "/jutsu/precache-manifest.b534d626fad19ad7e607b214873b474d.js",
+    "precache-manifest.8094cb611b2cb2084a18a06d7fd6ccfe.js": "/jutsu/precache-manifest.8094cb611b2cb2084a18a06d7fd6ccfe.js",
     "service-worker.js": "/jutsu/service-worker.js",
     "static/css/main.decb6672.chunk.css.map": "/jutsu/static/css/main.decb6672.chunk.css.map",
-    "static/js/2.2273da5b.chunk.js.LICENSE.txt": "/jutsu/static/js/2.2273da5b.chunk.js.LICENSE.txt"
+    "static/js/2.37d9c473.chunk.js.LICENSE.txt": "/jutsu/static/js/2.37d9c473.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.ced19050.js",
-    "static/js/2.2273da5b.chunk.js",
+    "static/js/2.37d9c473.chunk.js",
     "static/css/main.decb6672.chunk.css",
-    "static/js/main.4ca5cfc6.chunk.js"
+    "static/js/main.61e8bbac.chunk.js"
   ]
 }
