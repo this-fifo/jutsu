@@ -19,6 +19,7 @@
     "useJitsi",
     "videoconference"
   ],
+  "types": "index.d.ts",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
