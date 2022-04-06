@@ -34,9 +34,14 @@ const useJitsi = ({
     subject && client.executeCommand('subject', subject)
 
     client.addEventListener('videoConferenceJoined', () => {
-      password && client.executeCommand('password', password)
       displayName && client.executeCommand('displayName', displayName)
     })
+
+    client.addEventListener('participantRoleChanged', function(event) {
+      if (password && event.role === "moderator") {
+        client.executeCommand('password', password);
+      }
+    });
 
     client.addEventListener('passwordRequired', () => {
       password && client.executeCommand('password', password)
